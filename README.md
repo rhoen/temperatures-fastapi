@@ -13,7 +13,7 @@ We use [FastAPI](https://fastapi.tiangolo.com/) for the backend. Run using
 poetry with ```poetry run uvicorn main:app --reload```
 
 
-###Auth0
+### Auth0
 We use [Auth0](https://auth0.com/) for authentication. You'll need to create 
 an 'API' inside their app as well as a machine to machine application (this 
 may get created automatically after you make the api) and a javascript front 
@@ -39,7 +39,7 @@ heroku buildpacks:add heroku/python
 as documented (here)[https://github.com/moneymeets/python-poetry-buildpack].
 
 
-###Resources
+### Resources
 * Deploying poetry based python app on [heroku](https://github.
 com/moneymeets/python-poetry-buildpack)
 * Auth0 JS Client [docs](https://auth0.
