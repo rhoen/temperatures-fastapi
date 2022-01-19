@@ -27,3 +27,11 @@ heroku buildpacks:add heroku/python
 ```
 as documented (here)[https://github.com/moneymeets/python-poetry-buildpack].
 
+
+###Resources
+* Deploying poetry based python app on [heroku](https://github.
+com/moneymeets/python-poetry-buildpack)
+* Auth0 JS Client [docs](https://auth0.
+com/docs/quickstart/spa/vanillajs/02-calling-an-api#calling-the-api)
+* Add OAuth to fastapi (the official auth0 docs and libraries only support 
+  flask) [video](https://www.youtube.com/watch?v=ZSzzpnsOdrA)
