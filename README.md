@@ -1,4 +1,4 @@
-# Steal
+# FastAPI with Auth0 Starter App
 
 ### Local development
 For dependency management we use `poetry`. Install the latest poetry [here]
