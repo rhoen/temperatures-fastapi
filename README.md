@@ -13,6 +13,17 @@ We use [FastAPI](https://fastapi.tiangolo.com/) for the backend. Run using
 poetry with ```poetry run uvicorn main:app --reload```
 
 
+###Auth0
+We use [Auth0](https://auth0.com/) for authentication. You'll need to create 
+an 'API' inside their app as well as a machine to machine application (this 
+may get created automatically after you make the api) and a javascript front 
+end 'SPA' application. The values in `config/config.json` come from the SPA. The 
+values in your `.env` come from the M2M. The `.env` can include:
+```
+AUTH0_DOMAIN=
+AUTH0_CLIENT_ID=
+AUTH0_API_AUDIENCE=
+```
 ### Deploy
 We use Heroku to deploy. Heroku users 'buildpacks' to translate the code in 
 the repo into what ever it needs to run our app in their virtual machines. 
