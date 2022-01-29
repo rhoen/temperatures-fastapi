@@ -12,6 +12,12 @@ Add new dependencies with `poetry add my-dependency`.
 We use [FastAPI](https://fastapi.tiangolo.com/) for the backend. Run using 
 poetry with ```poetry run uvicorn main:app --reload```
 
+### Database
+We use Postgres as the database. Locally you will need to create the 
+database manually and configure an environment variables `DATABASE_URL` in 
+order for sqlalchemy and alembic to connect. `psql` is probably the easiest 
+way to do this plus a simple `CREATE database stealdb;`.
+
 
 ### Auth0
 We use [Auth0](https://auth0.com/) for authentication. You'll need to create 
@@ -23,6 +29,7 @@ values in your `.env` come from the M2M. The `.env` can include:
 AUTH0_DOMAIN=
 AUTH0_CLIENT_ID=
 AUTH0_API_AUDIENCE=
+DATABASE_URL=
 ```
 ### Deploy
 We use Heroku to deploy. Heroku users 'buildpacks' to translate the code in 
