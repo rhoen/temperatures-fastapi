@@ -1,78 +1,72 @@
 <html>
     <head>
-        <script src="https://cdn.auth0.com/js/auth0-spa-js/1.13/auth0-spa-js.production.js"></script>
+        <script src="lib/plotly.js"></script>
         <script>
-            let auth0 = null;
-            const fetchAuthConfig = () => fetch("/auth_config");
-
-            const configureClient = async () => {
-              const response = await fetchAuthConfig();
-              const config = await response.json();
-                console.log("config is", config);
-              auth0 = await createAuth0Client({
-                domain: config.domain,
-                client_id: config.clientId,
-                audience: config.audience,
-              });
-
-              console.log("the domain is " + config.domain);
-              console.log("auth0 is", auth0);
+            var trace1 = {
+              x: [1, 2, 3, 4],
+              y: [10, 15, 13, 17],
+              type: 'scatter'
             };
+
+            var trace2 = {
+              x: [1, 2, 3, 4],
+              y: [16, 5, 11, 9],
+              type: 'scatter'
+            };
+
+            var data = [trace1, trace2];
+
 
             window.onload = async () => {
-              await configureClient();
-              updateUI();
+                const response = await fetch("/readings_plotly");
+                const response_data = await response.json();
 
-              const isAuthenticated = await auth0.isAuthenticated();
+                Plotly.newPlot('plotly', response_data);
 
-              const query = window.location.search;
-              if (query.includes("code=") && query.includes("state=")) {
+            // const fetchAuthConfig = () => fetch("/auth_config");
 
-                await auth0.handleRedirectCallback();
-
-                updateUI();
-
-                window.history.replaceState({}, document.title, "/");
-              }
+            // const configureClient = async () => {
+            //   const response = await fetchAuthConfig();
+            //   const config = await response.json();
+            //   console.log("config is", config);
+            //   auth0 = await createAuth0Client({
+            //     domain: config.domain,
+            //     client_id: config.clientId,
+            //     audience: config.audience,
+            //   });
+            //
+            //   console.log("the domain is " + config.domain);
+            //   console.log("auth0 is", auth0);
+            // };
+            //   await configureClient();
+            //   updateUI();
+            //
+            //   const isAuthenticated = await auth0.isAuthenticated();
+            //
+            //   const query = window.location.search;
+            //   if (query.includes("code=") && query.includes("state=")) {
+            //
+            //     await auth0.handleRedirectCallback();
+            //
+            //     updateUI();
+            //
+            //     window.history.replaceState({}, document.title, "/");
+            //   }
             }
 
-            const updateUI = async () => {
-              const isAuthenticated = await auth0.isAuthenticated();
+            // const updateUI = async () => {
+            //   const isAuthenticated = await auth0.isAuthenticated();
+            //
+            //   document.getElementById("btn-logout").disabled = !isAuthenticated;
+            //   document.getElementById("btn-login").disabled = isAuthenticated;
+            // };
 
-              document.getElementById("btn-logout").disabled = !isAuthenticated;
-              document.getElementById("btn-login").disabled = isAuthenticated;
-            };
-
-            const login = async () => {
-              await auth0.loginWithRedirect({
-                redirect_uri: window.location.origin
-              });
-            };
-            const logout = () => {
-              auth0.logout({
-                returnTo: window.location.origin
-              });
-            };
-
-            const getRestrictedData = async () => {
-                const token = await auth0.getTokenSilently();
-                const response = await fetch("/api/user", {
-                    headers: {Authorization: `Bearer ${token}`}
-                })
-
-                const responseData = await response.json();
-                const responseElement = document.getElementById("api-call-result");
-                responseElement.innerText = JSON.stringify(responseData, {}, 2);
-            }
         </script>
         <title>Home Page for Steal Example app</title>
     </head>
     <body>
-        <h1>Welcome to STEAL</h1>
+        <h1>Welcome to 4839 Hazel Ave</h1>
         <p>Here we will do great things</p>
-        <button id="btn-login" disabled="true" onclick="login()">Log in</button>
-        <button id="btn-logout" disabled="true" onclick="logout()">Log out</button>
-        <button id="btn-logout" onclick="getRestrictedData()">Fetch secret data</button>
-        <pre><code id="api-call-result"></code></pre>
+        <div id="plotly"></div>
     </body>
 </html>
