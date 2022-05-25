@@ -2,64 +2,13 @@
     <head>
         <script src="lib/plotly.js"></script>
         <script>
-            var trace1 = {
-              x: [1, 2, 3, 4],
-              y: [10, 15, 13, 17],
-              type: 'scatter'
-            };
-
-            var trace2 = {
-              x: [1, 2, 3, 4],
-              y: [16, 5, 11, 9],
-              type: 'scatter'
-            };
-
-            var data = [trace1, trace2];
-
 
             window.onload = async () => {
                 const response = await fetch("/readings_plotly");
                 const response_data = await response.json();
 
                 Plotly.newPlot('plotly', response_data);
-
-            // const fetchAuthConfig = () => fetch("/auth_config");
-
-            // const configureClient = async () => {
-            //   const response = await fetchAuthConfig();
-            //   const config = await response.json();
-            //   console.log("config is", config);
-            //   auth0 = await createAuth0Client({
-            //     domain: config.domain,
-            //     client_id: config.clientId,
-            //     audience: config.audience,
-            //   });
-            //
-            //   console.log("the domain is " + config.domain);
-            //   console.log("auth0 is", auth0);
-            // };
-            //   await configureClient();
-            //   updateUI();
-            //
-            //   const isAuthenticated = await auth0.isAuthenticated();
-            //
-            //   const query = window.location.search;
-            //   if (query.includes("code=") && query.includes("state=")) {
-            //
-            //     await auth0.handleRedirectCallback();
-            //
-            //     updateUI();
-            //
-            //     window.history.replaceState({}, document.title, "/");
-            //   }
             }
-
-            // const updateUI = async () => {
-            //   const isAuthenticated = await auth0.isAuthenticated();
-            //
-            //   document.getElementById("btn-logout").disabled = !isAuthenticated;
-            //   document.getElementById("btn-login").disabled = isAuthenticated;
-            // };
 
         </script>
         <title>Home Page for Steal Example app</title>

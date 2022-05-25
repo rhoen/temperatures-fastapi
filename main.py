@@ -40,7 +40,3 @@ def read_item(item_id: int, q: Optional[str] = None):
 @app.get("/auth_config")
 def get_auth_config(request: Request):
     return Jinja2Templates(directory="config").TemplateResponse("config.json", {"request": request})
-
-@app.get("/auth_callback")
-def auth_callback():
-    return {"message": "this is the auth callback url. not protected"}
